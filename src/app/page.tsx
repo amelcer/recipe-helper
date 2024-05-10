@@ -1,13 +1,15 @@
+'use client'
+
 import { Flex, Layout, theme } from 'antd';
 import React from 'react';
-import UploadButton from './components/upload/uploadButton';
-import FileList from './components/upload/fileList';
-import Stepper from './components/stepper/stepper';
+import UploadButton from '../components/upload/uploadButton';
+import FileList from '../components/upload/fileList';
+import Stepper from '../components/stepper/stepper';
 
 const { Content, Sider } = Layout;
 
 
-const App: React.FC = () => {
+export default function App() {
   const {
     token: { colorBgContainer, borderRadiusLG, boxShadow, blue1, padding },
   } = theme.useToken();
@@ -20,7 +22,6 @@ const App: React.FC = () => {
           <Flex vertical justify='space-between' style={{ height: '100%', padding }} gap={2}>
             <FileList />
             <div>
-
               <UploadButton />
             </div>
           </Flex>
@@ -41,4 +42,3 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
