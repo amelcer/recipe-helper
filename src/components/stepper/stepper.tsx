@@ -1,11 +1,14 @@
 'use client'
 import React, { useState } from 'react';
-import { Button, Flex, message, Steps } from 'antd';
+import { Button, Flex, message, StepProps, Steps } from 'antd';
+import Ingredients from './ingredients';
+import { OrderedListOutlined } from '@ant-design/icons';
 
-const steps = [
+const steps: Array<StepProps & { content: React.ReactNode }> = [
     {
-        title: 'First',
-        content: 'First-content',
+        title: 'Select ingredients',
+        icon: <OrderedListOutlined />,
+        content: <Ingredients />,
     },
     {
         title: 'Second',
@@ -28,15 +31,17 @@ const Stepper: React.FC = () => {
         setCurrent(current - 1);
     };
 
-    const items = steps.map((item) => ({ key: item.title, title: item.title }));
+    const items = steps.map(({ content, ...item }) => ({ key: item.title, title: item.title, ...item }));
 
 
     return (
         <Flex vertical justify='space-between' style={{ height: '100%', }} gap={2}>
             <Steps current={current} items={items} />
-            <div style={{ height: "100%" }}>
-                {steps[current].content}
-            </div>
+            <Flex justify='center' align='center' style={{ height: '100%', padding: "2rem" }} gap={2}>
+                <div>
+                    {steps[current].content}
+                </div>
+            </Flex>
             <Flex justify='space-between' gap={2}>
                 <Button style={{ margin: '0 8px' }} onClick={() => prev()} disabled={current === 0}>
                     Previous
