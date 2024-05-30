@@ -4,6 +4,8 @@ import { Button, Flex, message, StepProps, Steps } from 'antd';
 import Ingredients from './ingredients';
 import { GlobalOutlined, OrderedListOutlined } from '@ant-design/icons';
 import Cuisine from './cuisine';
+import StepperContextProvider from './context';
+import Summary from './summary';
 
 const steps: Array<StepProps & { content: React.ReactNode }> = [
     {
@@ -17,8 +19,8 @@ const steps: Array<StepProps & { content: React.ReactNode }> = [
         icon: <GlobalOutlined />
     },
     {
-        title: 'Last',
-        content: 'Last-content',
+        title: 'Podsumowanie',
+        content: <Summary />,
     },
 ];
 
@@ -37,29 +39,31 @@ const Stepper: React.FC = () => {
 
 
     return (
-        <Flex vertical justify='space-between' style={{ height: '100%', }} gap={2}>
-            <Steps current={current} items={items} />
-            <Flex justify='center' align='center' style={{ height: '100%', padding: "2rem" }} gap={2}>
-                <div>
-                    {steps[current].content}
-                </div>
-            </Flex>
-            <Flex justify='space-between' gap={2}>
-                <Button style={{ margin: '0 8px' }} onClick={() => prev()} disabled={current === 0}>
-                    Wróć
-                </Button>
-                {current < steps.length - 1 && (
-                    <Button type="primary" onClick={() => next()}>
-                        Dalej
+        <StepperContextProvider>
+            <Flex vertical justify='space-between' style={{ height: '100%', }} gap={2}>
+                <Steps current={current} items={items} />
+                <Flex justify='center' align='center' style={{ height: '100%', padding: "2rem" }} gap={2}>
+                    <div>
+                        {steps[current].content}
+                    </div>
+                </Flex>
+                <Flex justify='space-between' gap={2}>
+                    <Button style={{ margin: '0 8px' }} onClick={() => prev()} disabled={current === 0}>
+                        Wróć
                     </Button>
-                )}
-                {current === steps.length - 1 && (
-                    <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                        Gotuj
-                    </Button>
-                )}
+                    {current < steps.length - 1 && (
+                        <Button type="primary" onClick={() => next()}>
+                            Dalej
+                        </Button>
+                    )}
+                    {current === steps.length - 1 && (
+                        <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                            Gotuj
+                        </Button>
+                    )}
+                </Flex>
             </Flex>
-        </Flex>
+        </StepperContextProvider>
     );
 };
 

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Input, Checkbox, Space, List, Flex } from 'antd';
 import type { GetProp } from 'antd';
-import { CheckboxValueType } from 'antd/es/checkbox/Group';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 
 type Props = {
     defaultOptions: string[]
-    onSelect: React.Dispatch<React.SetStateAction<CheckboxValueType[]>>
-    selected: CheckboxValueType[]
+    onSelect: (data: string[]) => void
+    selected: string[]
 }
 
 export default function CheckboxGroup({ defaultOptions, onSelect, selected }: Props) {
@@ -16,12 +15,12 @@ export default function CheckboxGroup({ defaultOptions, onSelect, selected }: Pr
     const [item, setItem] = useState(defaultOptions)
 
     const handleChange: GetProp<typeof Checkbox.Group, 'onChange'> = (checkedValues) => {
-        onSelect(checkedValues);
+        onSelect(checkedValues as string[]);
     };
 
     const handleAddOption = () => {
         setItem((values) => [...values, newItem]);
-        onSelect(s => [...s, newItem])
+        onSelect([...selected, newItem])
         setNewItem("")
     };
 
