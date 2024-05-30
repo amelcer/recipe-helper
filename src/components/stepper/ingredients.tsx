@@ -6,7 +6,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 
-const defaultOptions = ['Cheese', 'Eggs', 'Ham', 'Chicken breast', 'Salami', 'Cottage cheese', 'Cucumber', 'Onion', 'Red pepper', 'Butter', 'Garlic', 'Bacon'];
+const defaultOptions = ['Ser', 'Jajka', 'Szynka', 'Pierś z kurczaka', 'Salami', 'Serek wiejski', 'Ogórek', 'Cebula', 'Czerwona papryka', 'Masło', 'Czosnek', 'Boczek'];
 
 
 export default function Ingredients() {
@@ -52,10 +52,10 @@ export default function Ingredients() {
 
     return (
         <>
-            <Typography.Title level={3}>Choose what's in your fridge🌮🍕🥪</Typography.Title>
-            <Typography.Text>You can add something if it is missing...</Typography.Text>
+            <Typography.Title level={3}>Zaznacz co masz w lodówce 🌮🍕🥪</Typography.Title>
+            <Typography.Text>Lub dodaj brakujące składniki...</Typography.Text>
             <br /><br />
-            <Checkbox onChange={handleSelectAll} value="" checked={selected.length === ingredients.length} indeterminate={selected.length > 0 && selected.length !== ingredients.length}>Select all</Checkbox>
+            <Checkbox onChange={handleSelectAll} value="" checked={selected.length === ingredients.length} indeterminate={selected.length > 0 && selected.length !== ingredients.length}>Zaznacz wszystko</Checkbox>
             <Checkbox.Group value={selected} onChange={handleChange}>
                 <List
                     dataSource={ingredients}
@@ -64,8 +64,8 @@ export default function Ingredients() {
                     header={<></>}
                     footer={(
                         <Space.Compact style={{ width: '100%', marginTop: "8px" }}>
-                            <Input placeholder='Add ingredient' value={ingredient} onChange={handleIngredientChange} onKeyDown={handleKeyDown} />
-                            <Button type="default" onClick={handleAddOption}>Add</Button>
+                            <Input placeholder='Dodaj składnik' value={ingredient} onChange={handleIngredientChange} onKeyDown={handleKeyDown} />
+                            <Button type="default" onClick={handleAddOption}>Dodaj</Button>
                         </Space.Compact>
                     )}
                     renderItem={(item) => (

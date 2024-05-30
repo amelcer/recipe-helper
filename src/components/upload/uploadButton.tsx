@@ -20,7 +20,7 @@ const UploadButton: React.FC = () => (
     <p className="ant-upload-drag-icon">
       <InboxOutlined />
     </p>
-    <p className="ant-upload-text">Choose or drag new recipe book</p>
+    <p className="ant-upload-text">Wybierz lub przeciągnij książkę kucharską</p>
   </Dragger>
 );
 

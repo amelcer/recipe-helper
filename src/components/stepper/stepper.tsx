@@ -6,7 +6,7 @@ import { OrderedListOutlined } from '@ant-design/icons';
 
 const steps: Array<StepProps & { content: React.ReactNode }> = [
     {
-        title: 'Select ingredients',
+        title: 'Wybierz składniki',
         icon: <OrderedListOutlined />,
         content: <Ingredients />,
     },
@@ -44,16 +44,16 @@ const Stepper: React.FC = () => {
             </Flex>
             <Flex justify='space-between' gap={2}>
                 <Button style={{ margin: '0 8px' }} onClick={() => prev()} disabled={current === 0}>
-                    Previous
+                    Wróć
                 </Button>
                 {current < steps.length - 1 && (
                     <Button type="primary" onClick={() => next()}>
-                        Next
+                        Dalej
                     </Button>
                 )}
                 {current === steps.length - 1 && (
                     <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                        Done
+                        Gotuj
                     </Button>
                 )}
             </Flex>

@@ -23,10 +23,10 @@ const FileList: React.FC = () => (
                     title={item.title}
                 />
                 <Popconfirm
-                    title="Delete the file"
-                    description="Are you sure to delete this file?"
-                    okText="Yes"
-                    cancelText="No"
+                    title="Usuń plik"
+                    description="Czy na pewno chcesz usunąć ten plik?"
+                    okText="Tak"
+                    cancelText="Nie"
                 >
                     <Button danger icon={<DeleteOutlined />} shape="circle" ghost size='small' />
                 </Popconfirm>
