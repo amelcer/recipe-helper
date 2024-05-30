@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Button, Flex, message, StepProps, Steps } from 'antd';
 import Ingredients from './ingredients';
-import { OrderedListOutlined } from '@ant-design/icons';
+import { GlobalOutlined, OrderedListOutlined } from '@ant-design/icons';
+import Cuisine from './cuisine';
 
 const steps: Array<StepProps & { content: React.ReactNode }> = [
     {
@@ -11,8 +12,9 @@ const steps: Array<StepProps & { content: React.ReactNode }> = [
         content: <Ingredients />,
     },
     {
-        title: 'Second',
-        content: 'Second-content',
+        title: 'Rodzaj kuchni',
+        content: <Cuisine />,
+        icon: <GlobalOutlined />
     },
     {
         title: 'Last',

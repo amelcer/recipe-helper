@@ -4,16 +4,16 @@ import { useState } from 'react';
 import CheckboxGroup from '../checkboxGroup';
 
 
-const defaultOptions = ['Ser', 'Jajka', 'Szynka', 'Pierś z kurczaka', 'Salami', 'Serek wiejski', 'Ogórek', 'Cebula', 'Czerwona papryka', 'Masło', 'Czosnek', 'Boczek'];
+const defaultOptions = ['Śródziemnomorska', 'Wegetariańska', 'Polska', 'Chińska', 'Koreańska', 'Indyjska'];
 
 
-export default function Ingredients() {
+export default function Cuisine() {
     const [selected, setSelected] = useState<CheckboxValueType[]>([])
 
     return (
         <>
-            <Typography.Title level={3}>Zaznacz co masz w lodówce 🌮🍕🥪</Typography.Title>
-            <Typography.Text>Lub dodaj brakujące składniki...</Typography.Text>
+            <Typography.Title level={3}>Na jaki typ kuchni masz ochotę? 🍜🍝</Typography.Title>
+            <Typography.Text>albo dopisz swój pomysł...</Typography.Text>
             <br /><br />
             <CheckboxGroup defaultOptions={defaultOptions} onSelect={setSelected} selected={selected} />
         </>
