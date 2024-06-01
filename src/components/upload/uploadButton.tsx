@@ -9,10 +9,9 @@ const props: UploadProps = {
   name: 'file',
   multiple: false,
   action: (f) => {
-    console.log(f)
-    return ""
+    console.log(f);
+    return '';
   },
-
 };
 
 const UploadButton: React.FC = () => (

@@ -19,6 +19,10 @@ body {
   background: rgba(85, 85, 85, 0.668);
 }
 
+.ingredients-list {
+  width: 100%;
+}
+
 .ingredients-list .ant-row {
   max-height: 200px;
   overflow-y: auto;
