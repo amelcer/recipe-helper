@@ -1,10 +1,12 @@
 'use client';
 
+import Recipe from '@/components/recipeViewer/recipe';
+import StepperContextProvider from '@/components/stepper/context';
 import { Flex, Layout, theme } from 'antd';
-import React from 'react';
-import UploadButton from '../components/upload/uploadButton';
-import FileList from '../components/upload/fileList';
+import { useState } from 'react';
 import Stepper from '../components/stepper/stepper';
+import FileList from '../components/upload/fileList';
+import UploadButton from '../components/upload/uploadButton';
 
 const { Content, Sider } = Layout;
 
@@ -12,6 +14,15 @@ export default function App() {
   const {
     token: { colorBgContainer, borderRadiusLG, boxShadow, blue1, padding },
   } = theme.useToken();
+  const [recipe, setRecipe] = useState<string>('');
+
+  const handleSetRecipe = (r: string) => {
+    setRecipe(r);
+  };
+
+  const handleReset = () => {
+    setRecipe('');
+  };
 
   return (
     <Layout style={{ height: '100vh', padding: '10rem' }}>
@@ -33,7 +44,13 @@ export default function App() {
             borderRadius: `0 ${borderRadiusLG}px ${borderRadiusLG}px 0`,
           }}
         >
-          <Stepper />
+          <StepperContextProvider>
+            {recipe ? (
+              <Recipe onResetRecipe={handleReset} recipe={recipe} />
+            ) : (
+              <Stepper onRecipeReceived={handleSetRecipe} />
+            )}
+          </StepperContextProvider>
         </Content>
       </Flex>
     </Layout>

@@ -1,18 +1,24 @@
+import { RecipeInfo } from '@/types';
 import { PropsWithChildren, createContext, useCallback, useContext, useMemo, useState } from 'react';
 
-type StepperContext = {
-  ingredients: string[];
-  cuisine: string[];
-  canGoToShop: boolean;
+type StepperContext = RecipeInfo & {
   onIngredientsChange: (data: string[]) => void;
   onCuisineChange: (data: string[]) => void;
   onCanGoToShopChange: (data: boolean) => void;
+  page: number;
+  nextPage: () => void;
+  prevPage: () => void;
+  reset: () => void;
 };
 
 const Context = createContext<StepperContext>({
   ingredients: [],
   cuisine: [],
   canGoToShop: true,
+  page: 0,
+  nextPage: () => {},
+  prevPage: () => {},
+  reset: () => {},
   onIngredientsChange: () => {},
   onCuisineChange: () => {},
   onCanGoToShopChange: () => {},
@@ -24,9 +30,9 @@ export default function StepperContextProvider({ children }: PropsWithChildren) 
     cuisine: [],
     canGoToShop: true,
   });
+  const [page, setPage] = useState(0);
 
   const handleIngredientsChange = (newIngredients: string[]) => {
-    console.log(newIngredients);
     setDishInfo((info) => ({ ...info, ingredients: newIngredients }));
   };
 
@@ -38,9 +44,30 @@ export default function StepperContextProvider({ children }: PropsWithChildren) 
     setDishInfo((info) => ({ ...info, canGoToShop }));
   }, []);
 
+  const handleNextPage = useCallback(() => {
+    setPage((p) => p + 1);
+  }, []);
+
+  const handlePrevPage = useCallback(() => {
+    setPage((p) => p - 1);
+  }, []);
+
+  const handleReset = useCallback(() => {
+    setPage(0);
+    setDishInfo({
+      ingredients: [],
+      cuisine: [],
+      canGoToShop: true,
+    });
+  }, []);
+
   const value = useMemo<StepperContext>(
     () => ({
       ...dishInfo,
+      page,
+      nextPage: handleNextPage,
+      prevPage: handlePrevPage,
+      reset: handleReset,
       onIngredientsChange: handleIngredientsChange,
       onCuisineChange: handleCuisineChange,
       onCanGoToShopChange: handleCanGoToShopChange,
