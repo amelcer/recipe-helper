@@ -5,8 +5,7 @@ import StepperContextProvider from '@/components/stepper/context';
 import { Flex, Layout, theme } from 'antd';
 import { useState } from 'react';
 import Stepper from '../components/stepper/stepper';
-import FileList from '../components/upload/fileList';
-import UploadButton from '../components/upload/uploadButton';
+import Files from '@/components/upload/files';
 
 const { Content, Sider } = Layout;
 
@@ -29,10 +28,7 @@ export default function App() {
       <Flex style={{ width: '100%', boxShadow, borderRadius: borderRadiusLG }}>
         <Sider width={'30%'} style={{ borderRadius: `${borderRadiusLG}px 0 0 ${borderRadiusLG}px`, background: blue1 }}>
           <Flex vertical justify="space-between" style={{ height: '100%', padding }} gap={2}>
-            <FileList />
-            <div>
-              <UploadButton />
-            </div>
+            <Files />
           </Flex>
         </Sider>
         <Content
